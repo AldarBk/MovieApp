@@ -18,11 +18,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var database: DatabaseReference
 
 
-//    private val signInLauncher = registerForActivityResult(
-//        FirebaseAuthUIActivityResultContract()
-//    ) { res ->
-//        this.onSignInResult(res)
-//    }
+    private val signInLauncher = registerForActivityResult(
+        FirebaseAuthUIActivityResultContract()
+    ) { res ->
+        this.onSignInResult(res)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,44 +32,42 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
 
 
-//        database = Firebase.database.reference
-//
-//        val providers = arrayListOf(
-//            AuthUI.IdpConfig.EmailBuilder().build()
-//        )
-//
-//// Create and launch sign-in intent
-//        val signInIntent = AuthUI.getInstance()
-//            .createSignInIntentBuilder()
-//            .setAvailableProviders(providers)
-//            .build()
-//        signInLauncher.launch(signInIntent)
-//    }
-//
-//
-//    private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
-//        result.idpResponse
-//        if (result.resultCode == RESULT_OK) {
-//            // Successfully signed in
-//            val authUser = FirebaseAuth.getInstance().currentUser
-//            authUser?.let {
-//                val email = it.email.toString()
-//                val uid = it.uid
-//                val firebaseUser = User(email, uid)
-//                database.child("users").child(uid).setValue(firebaseUser)
-//
-//
-//
-//                //
-//            }
-//            // ...
-//        } else {
-//            Toast.makeText(this@MainActivity, "Something wrong with registration", Toast.LENGTH_SHORT).show()
-//            // Sign in failed. If response is null the user canceled the
-//            // sign-in flow using the back button. Otherwise check
-//            // response.getError().getErrorCode() and handle the error.
-//            // ...
-//        }
+        database = Firebase.database.reference
+
+        val providers = arrayListOf(
+            AuthUI.IdpConfig.EmailBuilder().build()
+        )
+
+// Create and launch sign-in intent
+        val signInIntent = AuthUI.getInstance()
+            .createSignInIntentBuilder()
+            .setAvailableProviders(providers)
+            .build()
+        signInLauncher.launch(signInIntent)
+    }
+
+
+    private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
+        result.idpResponse
+        if (result.resultCode == RESULT_OK) {
+            // Successfully signed in
+            val authUser = FirebaseAuth.getInstance().currentUser
+            authUser?.let {
+                val email = it.email.toString()
+                val uid = it.uid
+                val firebaseUser = User(email, uid)
+                database.child("users").child(uid).setValue(firebaseUser)
+
+                //
+            }
+            // ...
+        } else {
+            Toast.makeText(this@MainActivity, "Something wrong with registration", Toast.LENGTH_SHORT).show()
+            // Sign in failed. If response is null the user canceled the
+            // sign-in flow using the back button. Otherwise check
+            // response.getError().getErrorCode() and handle the error.
+            // ...
+        }
     }
 
 
