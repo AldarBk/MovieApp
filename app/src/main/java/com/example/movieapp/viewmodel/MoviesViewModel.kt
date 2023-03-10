@@ -23,9 +23,9 @@ class MoviesViewModel {
 
     fun getMovie() {
         val responce = mMovieRepository.getMovie()
-        responce.enqueue(object : Callback<Movies> {
-            override fun onResponse(call: Call<Movies>?, response: Response<Movies>?) {
-                _movies.postValue(response?.body()?.results)
+        responce.enqueue(/* callback = */ object : Callback<Movies> {
+            override fun onResponse(call: Call<Movies>, response: Response<Movies>) {
+                _movies.postValue(response.body()?.results)
             }
 
             override fun onFailure(call: Call<Movies>, t: Throwable) {}
@@ -33,10 +33,10 @@ class MoviesViewModel {
     }
 
     fun getMovieDetails(id: Int){
-        val responce = mMovieRepository.getMovieDetails(id,)
+        val responce = mMovieRepository.getMovieDetails(id)
         responce.enqueue(object : Callback<MovieDetails>{
             override fun onResponse(call: Call<MovieDetails>, response: Response<MovieDetails>) {
-                _movieDetails.postValue(response?.body())
+                _movieDetails.postValue(response.body())
             }
 
             override fun onFailure(call: Call<MovieDetails>, t: Throwable) {

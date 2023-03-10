@@ -6,15 +6,12 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.movieapp.R
-import com.example.movieapp.viewmodel.MainActivityViewModel
 import com.example.movieapp.data.User
+import com.example.movieapp.viewmodel.MainActivityViewModel
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
 

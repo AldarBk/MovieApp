@@ -12,7 +12,7 @@ class MoviesDBRepositoryImpl : MoviesDBRepository {
         return apiInterface.getMovies(Constants.API_KEY)
     }
 
-    override fun getMovieDetails(id: Int,): Call<MovieDetails> {
+    override fun getMovieDetails(id: Int): Call<MovieDetails> {
         return apiInterface.getMovieDetails(id, Constants.API_KEY)
     }
 }
